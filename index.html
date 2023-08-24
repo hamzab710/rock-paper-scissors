@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // create function that randomly returns rock or paper or scissors
+    let choices = ["rock", "paper", "scissors"];
+    function getComputerChoice() {
+        let randomNum = Math.floor(Math.random() * 3);
+        return choices[randomNum];
+    }
+
+    // create a prompt so the player can choose
+    // let playerChoice = prompt("enter your choice");
+
+    // create a function to play a round
+    function playRound(playerChoice,computerChoice) {
+        if (playerChoice = "rock") {
+            if (computerChoice = "paper") {
+                return "You Lose! Paper beats Rock"
+            } else if (computerChoice = "scissors") {
+                return "You Win! Rock beats Scissors"
+            } else {
+                return "It's a Tie!"
+            }
+        } else if (playerChoice = "paper") {
+            if (computerChoice = "scissors") {
+                return "You Lose! Scissors beats Paper"
+            } else if (computerChoice = "rock") {
+                return "You Win! Paper beats Rock"
+            } else {
+                return "It's a Tie!"
+            }
+        } else if (playerChoice = "scissors") {
+            if (computerChoice = "rock") {
+                return "You Lose! Rock beats Scissors"
+            } else if (computerChoice = "paper") {
+                return "You Win! Scissors beats Paper"
+            } else {
+                return "It's a Tie!"
+            }
+        }
+    }
+
+</script>
+</html>
