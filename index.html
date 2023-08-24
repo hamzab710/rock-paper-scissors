@@ -11,6 +11,7 @@
 <script>
     // create function that randomly returns rock or paper or scissors
     let choices = ["rock", "paper", "scissors"];
+
     function getComputerChoice() {
         let randomNum = Math.floor(Math.random() * 3);
         return choices[randomNum];
@@ -21,32 +22,36 @@
 
     // create a function to play a round
     function playRound(playerChoice,computerChoice) {
-        if (playerChoice = "rock") {
-            if (computerChoice = "paper") {
+        if (playerChoice === "rock") {
+            if (computerChoice === "paper") {
                 return "You Lose! Paper beats Rock"
-            } else if (computerChoice = "scissors") {
+            } else if (computerChoice === "scissors") {
                 return "You Win! Rock beats Scissors"
             } else {
                 return "It's a Tie!"
             }
-        } else if (playerChoice = "paper") {
-            if (computerChoice = "scissors") {
+        } else if (playerChoice === "paper") {
+            if (computerChoice === "scissors") {
                 return "You Lose! Scissors beats Paper"
-            } else if (computerChoice = "rock") {
+            } else if (computerChoice === "rock") {
                 return "You Win! Paper beats Rock"
             } else {
                 return "It's a Tie!"
             }
-        } else if (playerChoice = "scissors") {
-            if (computerChoice = "rock") {
+        } else if (playerChoice === "scissors") {
+            if (computerChoice === "rock") {
                 return "You Lose! Rock beats Scissors"
-            } else if (computerChoice = "paper") {
+            } else if (computerChoice === "paper") {
                 return "You Win! Scissors beats Paper"
             } else {
                 return "It's a Tie!"
             }
         }
     }
+
+    const playerChoice = prompt("enter your choice").toLowerCase();
+    const computerChoice = getComputerChoice();
+    console.log(playRound(playerChoice, computerChoice));
 
 </script>
 </html>
