@@ -9,10 +9,9 @@
     
 </body>
 <script>
-    // create function that randomly returns rock or paper or scissors
     let choices = ["rock", "paper", "scissors"];
     
-
+    // create function that randomly returns rock or paper or scissors
     function getComputerChoice() {
         let randomNum = Math.floor(Math.random() * 3);
         return choices[randomNum];
@@ -46,6 +45,10 @@
             } else {
                 return "It's a Tie!" + " your score is: " + x + " computer score is: " + y;
             }
+        // this is to restart a round is case of a typing error
+        } else {
+            const playerChoice = prompt("You typed Wrong! Try Again!").toLowerCase();
+            console.log(playRound(playerChoice,computerChoice));
         }
     }
 
@@ -56,29 +59,30 @@
         console.log(playRound(playerChoice,computerChoice));
     }
 
+    //show the final score
     function endGame(x,y) {
         if (x > y) {
             console.log("You Win!! Congratulations!!" + " Your score is: " + x + " computer score is: " + y);
         }
         else if (x < y) {
-            console.log("You Lose!! Better Luck Next Time." + " Your score is: " + x + " computer score is: " + y)
+            console.log("You Lose!! Better Luck Next Time." + " Your score is: " + x + " computer score is: " + y);
         }
+    // add extra round in case of a draw
         else {
-            console.log("it's a Tie" + " Your score is: " + x + " computer score is: " + y)
+            console.log("it's a Tie" + " Your score is: " + x + " computer score is: " + y);
+        //    const playerChoice = prompt("enter your choice").toLowerCase();
+        //    const computerChoice = getComputerChoice();
+        //    console.log(playRound(playerChoice,computerChoice));
+        //    do {
+        //        if (x < y) {
+        //            console.log("You Lose!! Better Luck Next Time." + " Your score is: " + x + " computer score is: " + y);
+        //        } else if (x > y) {
+        //            console.log("You Win!! Congratulations!!" + " Your score is: " + x + " computer score is: " + y);
+        //        }
+        //    } while (x == y);
         }
     }
-
-    endGame(x,y)
-
-
-    // create a prompt so the player can choose
-  
-
-    // create function to play 5 consecutive rounds
-    // spawn prompt after every round
-    // show score after the last round
-    // computer change its choice after every round
-
+    //endGame(x,y)
 
 </script>
 </html>
