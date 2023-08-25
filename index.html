@@ -17,31 +17,34 @@
         let randomNum = Math.floor(Math.random() * 3);
         return choices[randomNum];
     }
+
+    var x = 0;
+    var y = 0;
     // create a function to play a round
     function playRound(playerChoice,computerChoice) {
         if (playerChoice === "rock") {
             if (computerChoice === "paper") {
-                return "You Lose! Paper beats Rock";
+                return "You Lose! Paper beats Rock," + " your score is: " + x + " computer score is: " + ++y;
             } else if (computerChoice === "scissors") {
-                return "You Win! Rock beats Scissors";
+                return "You Win! Rock beats Scissors," +" your score is: " + ++x + " computer score is: " + y;
             } else {
-                return "It's a Tie!";
+                return "It's a Tie!" + " your score is: " + x + " computer score is: " + y;
             }
         } else if (playerChoice === "paper") {
             if (computerChoice === "scissors") {
-                return "You Lose! Scissors beats Paper";
+                return "You Lose! Scissors beats Paper," + " your score is: " + x + " computer score is: " + ++y;
             } else if (computerChoice === "rock") {
-                return "You Win! Paper beats Rock";
+                return "You Win! Paper beats Rock," + " your score is: " + ++x + " computer score is: " + y;
             } else {
-                return "It's a Tie!";
+                return "It's a Tie!" + " your score is: " + x + " computer score is: " + y;
             }
         } else if (playerChoice === "scissors") {
             if (computerChoice === "rock") {
-                return "You Lose! Rock beats Scissors";
+                return "You Lose! Rock beats Scissors," + " your score is: " + x + " computer score is: " + ++y;
             } else if (computerChoice === "paper") {
-                return "You Win! Scissors beats Paper";
+                return "You Win! Scissors beats Paper," + " your score is: " + ++x + " computer score is: " + y;
             } else {
-                return "It's a Tie!";
+                return "It's a Tie!" + " your score is: " + x + " computer score is: " + y;
             }
         }
     }
@@ -52,7 +55,22 @@
         const computerChoice = getComputerChoice();
         console.log(playRound(playerChoice,computerChoice));
     }
-    
+
+    function endGame(x,y) {
+        if (x > y) {
+            console.log("You Win!! Congratulations!!" + " Your score is: " + x + " computer score is: " + y);
+        }
+        else if (x < y) {
+            console.log("You Lose!! Better Luck Next Time." + " Your score is: " + x + " computer score is: " + y)
+        }
+        else {
+            console.log("it's a Tie" + " Your score is: " + x + " computer score is: " + y)
+        }
+    }
+
+    endGame(x,y)
+
+
     // create a prompt so the player can choose
   
 
