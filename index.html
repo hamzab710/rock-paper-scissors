@@ -60,29 +60,24 @@
     }
 
     //show the final score
-    function endGame(x,y) {
+    // add extra round in case of a draw
+    function endGame() {
+        while (x === y) {
+            console.log("it's a Tie" + " Your score is: " + x + " computer score is: " + y + " Extra Round");
+            const playerChoice = prompt("enter your choice you have one chance").toLowerCase();
+            const computerChoice = getComputerChoice();
+            console.log(playRound(playerChoice,computerChoice));
+            if (! x === y) break; 
+        }
         if (x > y) {
             console.log("You Win!! Congratulations!!" + " Your score is: " + x + " computer score is: " + y);
         }
         else if (x < y) {
             console.log("You Lose!! Better Luck Next Time." + " Your score is: " + x + " computer score is: " + y);
         }
-    // add extra round in case of a draw
-        else {
-            console.log("it's a Tie" + " Your score is: " + x + " computer score is: " + y);
-        //    const playerChoice = prompt("enter your choice").toLowerCase();
-        //    const computerChoice = getComputerChoice();
-        //    console.log(playRound(playerChoice,computerChoice));
-        //    do {
-        //        if (x < y) {
-        //            console.log("You Lose!! Better Luck Next Time." + " Your score is: " + x + " computer score is: " + y);
-        //        } else if (x > y) {
-        //            console.log("You Win!! Congratulations!!" + " Your score is: " + x + " computer score is: " + y);
-        //        }
-        //    } while (x == y);
-        }
     }
-    //endGame(x,y)
+
+    endGame();
 
 </script>
 </html>
