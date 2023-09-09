@@ -40,7 +40,9 @@
             playerChoice = button.id;
             randomNum = Math.floor(Math.random() * 3);
             computerChoice = choices[randomNum];
-            round.textContent = compare(playerChoice,computerChoice);
+            compare(playerChoice,computerChoice);
+
+
             if (x == 5) {
                 gameover.textContent = "You Win!! Congratulations!!" + " Your score is: " + x + " computer score is: " + y;
                 gameover.style.backgroundColor = 'green';
@@ -67,22 +69,46 @@
     var y = 0;
 
     function compare(playerChoice, computerChoice) {
-    const outcomes = {
-        rock: { beats: 'scissors', losesTo: 'paper' },
-        paper: { beats: 'rock', losesTo: 'scissors' },
-        scissors: { beats: 'paper', losesTo: 'rock' }
-    };
+        const outcomes = {
+            rock: { beats: 'scissors', losesTo: 'paper' },
+            paper: { beats: 'rock', losesTo: 'scissors' },
+            scissors: { beats: 'paper', losesTo: 'rock' }
+        };
 
-    if (playerChoice === computerChoice) {
-        return `It's a Tie! Your score is: ${x}, computer score is: ${y}`;
-    } else if (outcomes[playerChoice].beats === computerChoice) {
-        x++;
-        return `You Win! ${playerChoice} beats ${computerChoice}, your score is: ${x}, computer score is: ${y}`;
-    } else {
-        y++;
-        return `You Lose! ${computerChoice} beats ${playerChoice}, your score is: ${x}, computer score is: ${y}`;
+        let result = document.createElement('p');
+        result.classList.add('result');
+
+        let myScore = document.createElement('p');
+        myScore.classList.add('myScore');
+
+        let hisScore = document.createElement('p');
+        hisScore.classList.add('hisScore');
+
+        if (playerChoice === computerChoice) {
+            result.textContent = "It's a Tie!";
+            myScore.textContent = `Your score: ${x}` ;
+            hisScore.textContent = `Computer score: ${y}`;
+
+        } else if (outcomes[playerChoice].beats === computerChoice) {
+            x++;
+            result.textContent = `You Win! ${playerChoice} beats ${computerChoice}`;
+            myScore.textContent = `Your score : ${x}`;
+            hisScore.textContent = `computer score is: ${y}`;
+
+        } else {
+            y++;
+            result.textContent = `You Lose! ${computerChoice} beats ${playerChoice}`;
+            myScore.textContent = `your score is: ${x}`;
+            hisScore.textContent = `Computer score is: ${y}`;
+        }
+
+        document.getElementById('roundresult').appendChild(result);
+        document.getElementById('roundresult').appendChild(myScore);
+        document.getElementById('roundresult').appendChild(hisScore);
+
+        document.querySelector('.myScore').textContent = `Your score: ${x}`;
+        document.querySelector('.hisScore').textContent = `Computer score: ${y}`;
     }
-}
 
 
 
