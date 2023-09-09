@@ -1,0 +1,64 @@
+body {
+    background: url(images/background.jpg);
+    background-size: cover;
+    
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.title {
+    font-size: 50px;
+    text-align: center;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+button > img {
+    width: 400px;
+    height: 400px;
+}
+
+#roundresult {
+    font-size: 40px;
+    text-align: center;
+}
+
+#gameover {
+    font-size: 65px;
+    text-align: center;
+}
+
+#restart {
+    text-decoration: none;
+    padding: 0.5rem;
+    border: 1px solid #333333;
+    background-color: bisque;
+    width: 150px;
+    text-align: center;
+    font-size: large;
+    color: #333333;
+    margin-top: 100px;
+}
+
+#win {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    size: 600px;
+}
+
+
+#loss {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    size: 600px;
+}

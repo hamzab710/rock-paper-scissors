@@ -4,23 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
+    <h1 class="title">Rock, Paper, Scissors</h1>
     <div id="buttons">
-        <button id="paper">Paper</button>
-        <button id="rock">Rock</button>
-        <button id="scissors">Scissors</button>
+        <button id="paper"><img src="images/paper.jpg" alt="Paper"></button>
+        <button id="rock"><img src="images/rock.jpg" alt="Rock"></button>
+        <button id="scissors"><img src="images/scissors.jpg" alt="Scissors"></button>
     </div>
 
     <p id="roundresult"></p>
     <h1 id="gameover"></h1>
-    <a id="restart" style="display: none;" href="index.html">New Game</a>
+    <div class="container">
+        <a id="restart" style="display: none;" href="index.html">New Game</a>
+    </div>
+    <div id="gifs">
+        <img id="win" src="images/win.gif" alt="Congratulations" style="display: none;">
+        <img id="loss" src="images/lose.gif" alt="You Lost" style="display: none;">
+    </div>
 </body>
 <script>
     const buttons = document.querySelectorAll('button');
     const round = document.querySelector('#roundresult');
     const gameover = document.querySelector('#gameover');
     const restart = document.querySelector('#restart');
+    const win = document.querySelector('#win');
+    const loss = document.querySelector('#loss');
 
     let choices = ["paper", "rock", "scissors"];
 
@@ -33,15 +43,21 @@
             round.textContent = compare(playerChoice,computerChoice);
             if (x == 5) {
                 gameover.textContent = "You Win!! Congratulations!!" + " Your score is: " + x + " computer score is: " + y;
+                gameover.style.backgroundColor = 'green';
                 const btn = document.getElementById('buttons');
                 btn.remove();
+                round.remove();
                 restart.style.display = "block";
+                win.style.display = "flex";
 
             } else if (y == 5) {
                 gameover.textContent = "You Lose!! Better Luck Next Time." + " Your score is: " + x + " computer score is: " + y;
+                gameover.style.backgroundColor = 'red';
                 const btn = document.getElementById('buttons');
                 btn.remove();
+                round.remove();
                 restart.style.display = "block";
+                loss.style.display = "flex";
 
             }
         })
@@ -50,33 +66,23 @@
     var x = 0;
     var y = 0;
 
-    function compare(playerChoice,computerChoice) {
-        if (playerChoice == "rock") {
-            if (computerChoice == "paper") {
-                return "You Lose! Paper beats Rock," + " your score is: " + x + " computer score is: " + ++y;
-            } else if (computerChoice == "scissors") {
-                return "You Win! Rock beats Scissors," +" your score is: " + ++x + " computer score is: " + y;
-            } else {
-                return "It's a Tie!" + " your score is: " + x + " computer score is: " + y;
-            }
-        } else if (playerChoice == "paper") {
-            if (computerChoice == "scissors") {
-                return "You Lose! Scissors beats Paper," + " your score is: " + x + " computer score is: " + ++y;
-            } else if (computerChoice == "rock") {
-                return "You Win! Paper beats Rock," + " your score is: " + ++x + " computer score is: " + y;
-            } else {
-                return "It's a Tie!" + " your score is: " + x + " computer score is: " + y;
-            }
-        } else if (playerChoice == "scissors") {
-            if (computerChoice == "rock") {
-                return "You Lose! Rock beats Scissors," + " your score is: " + x + " computer score is: " + ++y;
-            } else if (computerChoice == "paper") {
-                return "You Win! Scissors beats Paper," + " your score is: " + ++x + " computer score is: " + y;
-            } else {
-                return "It's a Tie!" + " your score is: " + x + " computer score is: " + y;
-            }
-        }
+    function compare(playerChoice, computerChoice) {
+    const outcomes = {
+        rock: { beats: 'scissors', losesTo: 'paper' },
+        paper: { beats: 'rock', losesTo: 'scissors' },
+        scissors: { beats: 'paper', losesTo: 'rock' }
+    };
+
+    if (playerChoice === computerChoice) {
+        return `It's a Tie! Your score is: ${x}, computer score is: ${y}`;
+    } else if (outcomes[playerChoice].beats === computerChoice) {
+        x++;
+        return `You Win! ${playerChoice} beats ${computerChoice}, your score is: ${x}, computer score is: ${y}`;
+    } else {
+        y++;
+        return `You Lose! ${computerChoice} beats ${playerChoice}, your score is: ${x}, computer score is: ${y}`;
     }
+}
 
 
 
