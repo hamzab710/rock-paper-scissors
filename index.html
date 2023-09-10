@@ -14,7 +14,10 @@
         <button id="scissors"><img src="images/scissors.jpg" alt="Scissors"></button>
     </div>
 
-    <p id="roundresult"></p>
+    <div id="roundresult">
+        <p class="myScore"></p>
+        <p class="hisScore"></p>
+    </div>
     <h1 id="gameover"></h1>
     <div class="container">
         <a id="restart" style="display: none;" href="index.html">New Game</a>
@@ -23,10 +26,10 @@
         <img id="win" src="images/win.gif" alt="Congratulations" style="display: none;">
         <img id="loss" src="images/lose.gif" alt="You Lost" style="display: none;">
     </div>
+    <div id="result-container"></div>
 </body>
 <script>
     const buttons = document.querySelectorAll('button');
-    const round = document.querySelector('#roundresult');
     const gameover = document.querySelector('#gameover');
     const restart = document.querySelector('#restart');
     const win = document.querySelector('#win');
@@ -44,23 +47,22 @@
 
 
             if (x == 5) {
-                gameover.textContent = "You Win!! Congratulations!!" + " Your score is: " + x + " computer score is: " + y;
-                gameover.style.backgroundColor = 'green';
+                gameover.textContent = "You Win!! Congratulations!!";
+                gameover.style.backgroundColor = '#3ddd4a';
                 const btn = document.getElementById('buttons');
                 btn.remove();
-                round.remove();
+                document.querySelector('.result').remove();
                 restart.style.display = "block";
                 win.style.display = "flex";
 
             } else if (y == 5) {
-                gameover.textContent = "You Lose!! Better Luck Next Time." + " Your score is: " + x + " computer score is: " + y;
-                gameover.style.backgroundColor = 'red';
+                gameover.textContent = "You Lose!! Better Luck Next Time.";
+                gameover.style.backgroundColor = '#dd3d3d';
                 const btn = document.getElementById('buttons');
                 btn.remove();
-                round.remove();
+                document.querySelector('.result').remove();
                 restart.style.display = "block";
                 loss.style.display = "flex";
-
             }
         })
     });
@@ -72,8 +74,15 @@
         const outcomes = {
             rock: { beats: 'scissors', losesTo: 'paper' },
             paper: { beats: 'rock', losesTo: 'scissors' },
-            scissors: { beats: 'paper', losesTo: 'rock' }
+            scissors: { beats: 'paper', losesTo: 'rock' },
         };
+
+        const resultContainer = document.getElementById('result-container');
+
+        const existingResult = resultContainer.querySelector('.result');
+        if (existingResult) {
+            resultContainer.removeChild(existingResult);
+        }
 
         let result = document.createElement('p');
         result.classList.add('result');
@@ -86,25 +95,19 @@
 
         if (playerChoice === computerChoice) {
             result.textContent = "It's a Tie!";
-            myScore.textContent = `Your score: ${x}` ;
-            hisScore.textContent = `Computer score: ${y}`;
 
         } else if (outcomes[playerChoice].beats === computerChoice) {
             x++;
             result.textContent = `You Win! ${playerChoice} beats ${computerChoice}`;
-            myScore.textContent = `Your score : ${x}`;
-            hisScore.textContent = `computer score is: ${y}`;
+            result.style.color = '#3ddd4a';
 
         } else {
             y++;
             result.textContent = `You Lose! ${computerChoice} beats ${playerChoice}`;
-            myScore.textContent = `your score is: ${x}`;
-            hisScore.textContent = `Computer score is: ${y}`;
+            result.style.color ='#dd3d3d';
         }
 
-        document.getElementById('roundresult').appendChild(result);
-        document.getElementById('roundresult').appendChild(myScore);
-        document.getElementById('roundresult').appendChild(hisScore);
+        resultContainer.appendChild(result);
 
         document.querySelector('.myScore').textContent = `Your score: ${x}`;
         document.querySelector('.hisScore').textContent = `Computer score: ${y}`;
