@@ -34,18 +34,25 @@
     const restart = document.querySelector('#restart');
     const win = document.querySelector('#win');
     const loss = document.querySelector('#loss');
+    var x = 0;
+    var y = 0;
 
-    let choices = ["paper", "rock", "scissors"];
+    const outcomes = {
+            rock: { beats: 'scissors', losesTo: 'paper', name: "rock" },
+            paper: { beats: 'rock', losesTo: 'scissors', name: "paper" },
+            scissors: { beats: 'paper', losesTo: 'rock', name: "scissors" },
+        };
 
 
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            playerChoice = button.id;
-            randomNum = Math.floor(Math.random() * 3);
-            computerChoice = choices[randomNum];
+            const playerChoice = button.id;
+            const propertyNames = Object.keys(outcomes);
+            const computerChoice = propertyNames[Math.floor(Math.random() * propertyNames.length)];
+
             compare(playerChoice,computerChoice);
 
-
+            // (textContent - backgroundColor) in an array as a win or loss 
             if (x == 5) {
                 gameover.textContent = "You Win!! Congratulations!!";
                 gameover.style.backgroundColor = '#3ddd4a';
@@ -67,15 +74,9 @@
         })
     });
 
-    var x = 0;
-    var y = 0;
+
 
     function compare(playerChoice, computerChoice) {
-        const outcomes = {
-            rock: { beats: 'scissors', losesTo: 'paper' },
-            paper: { beats: 'rock', losesTo: 'scissors' },
-            scissors: { beats: 'paper', losesTo: 'rock' },
-        };
 
         const resultContainer = document.getElementById('result-container');
 
