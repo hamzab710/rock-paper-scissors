@@ -17,12 +17,16 @@ body {
 #buttons {
     display: flex;
     justify-content: space-around;
-    
+}
+
+button {
+    border-radius: 20px;
 }
 
 button > img {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
 }
 
 #roundresult {
@@ -58,17 +62,8 @@ button > img {
     margin-top: 80px;
 }
 
-#win {
+#win, #loss {
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
-    size: 600px;
-}
-
-
-#loss {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 150px;
-    size: 600px;
 }
